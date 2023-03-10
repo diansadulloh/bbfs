@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BBFS</title>
+	<style>
+		input[type=text], select {
+			width: 80%;
+			padding: 12px 20px;
+			margin: 8px 0;
+			display: inline-block;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+		}
+
+		input[type=number], select {
+			width: 80%;
+			padding: 12px 20px;
+			margin: 8px 0;
+			display: inline-block;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+		}
+		
+		input[type=button] {
+			width: 15em;
+			background-color: #4CAF50;
+			color: white;
+			padding: 14px 20px;
+			margin: 8px 0;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+		
+		input[type=submit] {
+			width: 15em;
+			background-color: #4CAF50;
+			color: white;
+			padding: 14px 20px;
+			margin: 8px 0;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+
+		button[type=button] {
+			width: 15em;
+			background-color: #4CAF50;
+			color: white;
+			padding: 14px 20px;
+			margin: 8px 0;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+
+		input[type=submit]:hover {
+			background-color: #45a049;
+		}
+
+		div {
+			border-radius: 5px;
+			background-color: #f2f2f2;
+			padding: 20px;
+		}
+* {
+  box-sizing:border-box;
+}
+body {
+  margin:20px;
+  background-color: #fafafa;
+}
+textarea {
+  width:100%;
+  resize: vertical;
+  padding:15px;
+  border-radius:15px;
+  border:0;
+  box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+  height:150px;
+}
+	</style>
+</head>
+<body>
+<script  src="./bbfs1.js"></script>
+	<div>
+		<label for="inputAngka">RESULT TERAKHIR 3D/2D:</label><br />
+		<input type="text" id="inputAngka" value="1,2,3" style=" max-width:250px;">  <button type="button" onclick="tampilkanAngka()">Ambil Angka</button>
+		<textarea id="hasil" style=" max-height:3em;"></textarea>
+	</div><br />
+
+
+
+
+	
+<div style="text-align: center;">
+<form action="" autocomplete="off" method="get" onsubmit="return combineApp.calcCombinations({src:this.str,dest:this.txt,msgID:'count'});" style="color: black;">
+<div>
+<div>
+<p>Masukkan angka dari hasil diatas</p>
+<p>Contoh: jika hasil 12345, Maka untuk 2D Penulisannya 12345,12345</p>
+</div>
+<input id="str" name="str" size="45" title="Gunakan koma untuk memisahkan posisi karakter" type="text" value="AS,KOP,KEPALA,EKOR" style=" max-width:720px;"> <input type="submit" value="Generate"><br>
+
+<p><b><i id="count">27 kombinasi dari "123".</i></p></b>
+
+  <textarea cols="70" name="txt" rows="15" style="font-size: 18px; height: 112px; width: 646px;">111*112*113*121*122*123*131*132*133*211*212*213*221*222*223*231*232*233*311*312*313*321*322*323*331*332*333</textarea><br><br>
+ </div></form></div>	
+	
+	
+<script  src="./data.js"></script>
+<script  src="./bbfs2.js"></script>
+<script  src="./bbfs3.js"></script>
+	<script>
+
+		function tampilkanAngka() {
+			var input = document.getElementById("inputAngka").value;
+			var inputArr = input.split(/[,\s]+/);
+			var hasilArr = [];
+
+			for (var i = 0; i < inputArr.length; i++) {
+				var angka = parseInt(inputArr[i]);
+				if (!isNaN(angka)) {
+					hasilArr = hasilArr.concat(data[angka]);
+				}
+			}
+
+			var hasilSet = new Set(hasilArr);
+			var hasil = [...hasilSet].join("");
+			document.getElementById("hasil").innerHTML = hasil;
+		}
+	</script>
+</body>
+</html>
